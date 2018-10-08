@@ -1,0 +1,29 @@
+{
+  "name": "highlightjs-cshtml-razor",
+  "version": "1.0.0",
+  "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
+  "main": "cshtml.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highlightjs/highlightjs-cshtml-razor.git"
+  },
+  "keywords": [
+    "cshtml",
+    "hljs",
+    "highlightjs",
+    "highlight.js",
+    "razor",
+    "asp.net",
+    "c#",
+    "csharp"
+  ],
+  "author": "RomanResh",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/highlightjs/highlightjs-cshtml-razor/issues"
+  },
+  "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme"
+}
