@@ -2,9 +2,9 @@
   "name": "highlightjs-cshtml-razor",
   "version": "1.0.0",
   "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
-  "main": "cshtml.js",
+  "main": "cshtml-razor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -12,6 +12,9 @@
   },
   "keywords": [
     "cshtml",
+    "cshtml-razor",
+    "razor-cshtml",
+    "razor",
     "hljs",
     "highlightjs",
     "highlight.js",
@@ -25,5 +28,10 @@
   "bugs": {
     "url": "https://github.com/highlightjs/highlightjs-cshtml-razor/issues"
   },
-  "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme"
+  "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme",
+  "devDependencies": {
+    "highlightjs": "^9.10.0",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * Language: CSHTML
+ * Language: cshtml-razor
  * Requires: xml.js, cs.js
  * Author: Roman Resh <romanresh@live.com>
 */
@@ -14,7 +14,7 @@ function hljsDefineCshtmlRazor(hljs) {
         returnBegin: true,  
         end: "</text>",
         returnEnd: true,
-        subLanguage: "cshtml",
+        subLanguage: "cshtml-razor",
         contains: [
             {
                 begin: "[@]{0,1}<text>",
@@ -189,7 +189,7 @@ function hljsDefineCshtmlRazor(hljs) {
         variants: BUILT_IN_CODE_BLOCKS_VARIANTS,
         returnBegin: true,
         returnEnd: true,
-        subLanguage: "cshtml",
+        subLanguage: "cshtml-razor",
         contains: [
             {
                 variants: BUILT_IN_CODE_BLOCKS_VARIANTS.map(function(v) {
@@ -347,7 +347,7 @@ function hljsDefineCshtmlRazor(hljs) {
         begin: "@section[\\s]+[a-zA-Z0-9]+[\\s]*{",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: "cshtml",
+        subLanguage: "cshtml-razor",
         end: "}",
         contains: [
             {
