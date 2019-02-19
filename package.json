@@ -31,7 +31,7 @@
   "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme",
   "devDependencies": {
     "highlightjs": "^9.10.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.0",
     "should": "^13.2.3"
   }
 }
