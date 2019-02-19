@@ -33,4 +33,4 @@ hljs.initHighlightingOnLoad();
 
 ### License
 
-[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/) [![Greenkeeper badge](https://badges.greenkeeper.io/highlightjs/highlightjs-cshtml-razor.svg)](https://greenkeeper.io/)
