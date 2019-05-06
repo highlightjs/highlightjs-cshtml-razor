@@ -16,7 +16,7 @@ If you're not using a build system and just want to embed this in your webpage:
 <script type="text/javascript" src="/path/to/highlight.pack.js"></script>
 <script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/cshtml.js"></script>
 <script type="text/javascript">
-    hljs.registerLanguage('cshtml-razor', window.hljsDefineRazorCshtml);
+    hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
     hljs.initHighlightingOnLoad();
 </script>
 ```
@@ -25,9 +25,9 @@ If you're using webpack / rollup / browserify / node:
    
 ```javascript
 var hljs = require('highlightjs');
-var hljsDefineRazorCshtml = require('highlightjs-cshtml-razor');
+var hljsDefineCshtmlRazor = require('highlightjs-cshtml-razor');
 
-hljsDefineRazorCshtml(hljs);
+hljsDefineCshtmlRazor(hljs);
 hljs.initHighlightingOnLoad();
 ```
 
