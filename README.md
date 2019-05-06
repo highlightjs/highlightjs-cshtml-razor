@@ -14,7 +14,7 @@ If you're not using a build system and just want to embed this in your webpage:
 
 ```html
 <script type="text/javascript" src="/path/to/highlight.pack.js"></script>
-<script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/cshtml.js"></script>
+<script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/cshtml-razor.js"></script>
 <script type="text/javascript">
     hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
     hljs.initHighlightingOnLoad();
