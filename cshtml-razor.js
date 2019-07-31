@@ -154,7 +154,7 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "\\)",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: 'cs',
+        subLanguage: ["cs"],
         contains: [
             {
                 begin: "@\\(",
@@ -164,7 +164,7 @@ function hljsDefineCshtmlRazor(hljs) {
                 begin: "\\(",
                 end: "\\)",
                 subLanguage: 'cs',
-                contains: [hljs.QUOTE_STRING_MODE, 'self']
+                contains: [hljs.QUOTE_STRING_MODE, 'self', razor_text_block]
             },
             razor_text_block,
             {
