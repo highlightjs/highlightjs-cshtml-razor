@@ -176,14 +176,13 @@ function hljsDefineCshtmlRazor(hljs) {
     };
     var xml_blocks = getXmlBlocks(hljs, [razor_inline_expresion, razor_parentheses_block]);
     var razor_directives = {
-        begin: "^@(model|using|inherits|inject)[^\\r\\n{\\(]*$",
-        end: "$",
-        className: SPECIAL_SYMBOL_CLASSNAME,
+        begin: "^\\s*@(model|using|inherits|inject)[^\\r\\n{\\(]*$",
+        end: "$",        
         returnBegin: true,
         returnEnd: true,
         contains: [
             {
-                begin: "@(model|using|inherits|inject)",
+                begin: "^\\s*@(model|using|inherits|inject)",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
             {
@@ -201,12 +200,13 @@ function hljsDefineCshtmlRazor(hljs) {
         returnBegin: true,
         returnEnd: true,
         end: "\\}",
-        subLanguage: ['cshtml-razor', 'cs'],
+        subLanguage: ['cs', 'cshtml-razor'],
         contains: [
             {
                 begin: "@\\{",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
+            razor_text_block,
             braces,
             closed_brace
         ]
@@ -346,6 +346,7 @@ function hljsDefineCshtmlRazor(hljs) {
             razor_try_block,
             razor_escape_at,
             razor_text_block,
+            razor_parentheses_block,
             {
                 className: 'meta',
                 begin: '<!DOCTYPE', end: '>',
