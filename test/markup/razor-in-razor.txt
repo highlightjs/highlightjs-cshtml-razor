@@ -1,0 +1,11 @@
+@{
+    var inCSharp = true;
+    @<text>xml</text>
+    <div class="foo">content</div>
+}
+
+@if(true){
+    var inCSharp = true;
+    @<text>xml</text>
+    <div class="foo">content</div>
+}

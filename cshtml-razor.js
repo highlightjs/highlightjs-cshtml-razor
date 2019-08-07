@@ -97,7 +97,7 @@ function getXmlBlocks(hljs, additional_blocks) {
                 xml_tag_internal
             ]
         }
-    ];
+    ].concat(additional_blocks);
 }
 function hljsDefineCshtmlRazor(hljs) {
     var SPECIAL_SYMBOL_CLASSNAME = "built_in";
@@ -114,11 +114,20 @@ function hljsDefineCshtmlRazor(hljs) {
     var razor_inline_expresion = {
         begin: "@[a-zA-Z]+",
         returnBegin: true,
+        subLanguage: 'cs',
         end: "(\\r|\\n|<|\\s|\"|')",
         contains: [
             {
                 begin: '@',
                 className: SPECIAL_SYMBOL_CLASSNAME
+            },
+            { 
+                begin: '".*(?!$)"',
+                skip: true
+            },
+            {
+                begin: '"',
+                endsParent: true
             }
         ],
         returnEnd: true
@@ -154,7 +163,7 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "\\)",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: ["cs"],
+        subLanguage: "cs",
         contains: [
             {
                 begin: "@\\(",
@@ -200,14 +209,12 @@ function hljsDefineCshtmlRazor(hljs) {
         returnBegin: true,
         returnEnd: true,
         end: "\\}",
-        subLanguage: ['cs', 'cshtml-razor'],
+        subLanguage: 'cs',
         contains: [
             {
                 begin: "@\\{",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
-            razor_text_block,
-            braces,
             closed_brace
         ]
     };
@@ -225,7 +232,7 @@ function hljsDefineCshtmlRazor(hljs) {
         returnBegin: true,
         returnEnd: true,
         end: "}",
-        subLanguage: ['cshtml-razor', 'cs'],
+        subLanguage: 'cs',
         contains: [
             {
                 variants: razor_code_block_variants.map(function (v) { return { begin: v.begin }; }),
@@ -262,7 +269,7 @@ function hljsDefineCshtmlRazor(hljs) {
             },
             braces,
             closed_brace,
-            razor_block
+            //razor_block
         ]
     };
     var section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
@@ -335,6 +342,7 @@ function hljsDefineCshtmlRazor(hljs) {
             }
         ]
     };
+
     var result = {
         aliases: ['cshtml'],
         contains: [
@@ -360,6 +368,13 @@ function hljsDefineCshtmlRazor(hljs) {
         ]
     };
     result.contains = result.contains.concat(xml_blocks);
+
+    [razor_block, razor_code_block]
+        .forEach(function(mode) {
+            var razorModes = result.contains.filter(function(c) { return c !== mode; });
+            mode.contains.splice.apply(mode.contains, [1, 0].concat(razorModes));
+        });
+
     return result;
 }
 
