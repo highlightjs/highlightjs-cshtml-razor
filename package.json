@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-cshtml-razor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
   "main": "cshtml-razor.js",
   "scripts": {
@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/highlightjs/highlightjs-cshtml-razor.git"
   },
+  "files": [
+    "cshtml-razor.js"
+  ],
   "keywords": [
     "cshtml",
     "cshtml-razor",
