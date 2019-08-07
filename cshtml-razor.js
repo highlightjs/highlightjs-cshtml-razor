@@ -1,6 +1,6 @@
 /*
  * Language: cshtml-razor
- * Requires: xml.js, cs.js
+ * Requires: xml.js, cs.js, css.js, javascript.js
  * Author: Roman Resh <romanresh@live.com>
 */
 
@@ -57,17 +57,6 @@ function getXmlBlocks(hljs, additional_blocks) {
             begin: /<\?xml/, end: /\?>/, relevance: 10
         },
         {
-            begin: /<\?(php)?/, end: /\?>/,
-            subLanguage: 'php',
-            contains: [
-                { begin: '/\\*', end: '\\*/', skip: true },
-                { begin: 'b"', end: '"', skip: true },
-                { begin: 'b\'', end: '\'', skip: true },
-                hljs.inherit(hljs.APOS_STRING_MODE, { illegal: null, className: null, contains: null, skip: true }),
-                hljs.inherit(hljs.QUOTE_STRING_MODE, { illegal: null, className: null, contains: null, skip: true })
-            ]
-        },
-        {
             className: 'tag',
             begin: '<style(?=\\s|>|$)', end: '>',
             keywords: { name: 'style' },
@@ -101,6 +90,7 @@ function getXmlBlocks(hljs, additional_blocks) {
 }
 function hljsDefineCshtmlRazor(hljs) {
     var SPECIAL_SYMBOL_CLASSNAME = "built_in";
+    var CONTENT_REPLACER = {};
     var closed_brace = {
         begin: "}",
         className: SPECIAL_SYMBOL_CLASSNAME,
@@ -215,6 +205,7 @@ function hljsDefineCshtmlRazor(hljs) {
                 begin: "@\\{",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
+            CONTENT_REPLACER,
             closed_brace
         ]
     };
@@ -246,6 +237,7 @@ function hljsDefineCshtmlRazor(hljs) {
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
             },
+            CONTENT_REPLACER,
             {
                 variants: [
                     { begin: "}[\\s]*else\\sif[\\s]*\\([^{]+[\\s]*{" },
@@ -278,7 +270,7 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "}",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: ["cs"],
+        subLanguage: "cs",
         contains: [
             { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
             { begin: "try[\\s]*{", subLanguage: "cs" },
@@ -300,32 +292,26 @@ function hljsDefineCshtmlRazor(hljs) {
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
             },
-            razor_text_block,
+            CONTENT_REPLACER,
             braces,
             closed_brace
         ]
     };
-
-    razor_try_block.contains = razor_try_block.contains.concat(xml_blocks);
     var razor_section_block = {
         begin: section_begin,
         returnBegin: true,
         returnEnd: true,
         end: "}",
-        subLanguage: ['cshtml-razor'],
+        subLanguage: 'cshtml-razor',
         contains: [
             {
                 begin: section_begin,
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
-            razor_code_block,
-            razor_block,
-            razor_try_block,
             braces,
             closed_brace
         ]
     };
-    razor_section_block.contains = razor_section_block.contains.concat(xml_blocks);
     var rasor_await = {
         begin: "@await ",
         returnBegin: true,
@@ -344,7 +330,7 @@ function hljsDefineCshtmlRazor(hljs) {
     };
 
     var result = {
-        aliases: ['cshtml'],
+        aliases: ['cshtml','razor','razor-cshtml'],
         contains: [
             razor_directives,
             razor_block,
@@ -369,10 +355,11 @@ function hljsDefineCshtmlRazor(hljs) {
     };
     result.contains = result.contains.concat(xml_blocks);
 
-    [razor_block, razor_code_block]
+    [razor_block, razor_code_block, razor_try_block]
         .forEach(function(mode) {
             var razorModes = result.contains.filter(function(c) { return c !== mode; });
-            mode.contains.splice.apply(mode.contains, [1, 0].concat(razorModes));
+            var replacerIndex = mode.contains.indexOf(CONTENT_REPLACER);
+            mode.contains.splice.apply(mode.contains, [replacerIndex, 1].concat(razorModes));
         });
 
     return result;

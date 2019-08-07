@@ -9,3 +9,9 @@
     </span><span class="cshtml-razor"></span><span class="hljs-built_in">@&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="cs">
     </span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span>&gt;</span><span class="cs">content</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="cs">
 </span><span class="hljs-built_in">}</span>
+
+<span class="cshtml-razor"></span><span class="hljs-built_in">@section Test{</span><span class="cshtml-razor">
+    var inCSharp = true;
+    <span class="cshtml-razor"></span><span class="hljs-built_in">@&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span>&gt;</span>content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</span><span class="hljs-built_in">}</span>

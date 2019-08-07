@@ -9,3 +9,9 @@
     @<text>xml</text>
     <div class="foo">content</div>
 }
+
+@section Test{
+    var inCSharp = true;
+    @<text>xml</text>
+    <div class="foo">content</div>
+}
