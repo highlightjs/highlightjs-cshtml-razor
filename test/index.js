@@ -8,7 +8,7 @@ let hljsDefineCshtmlRazor = require("../cshtml-razor");
 const readdir = promisify(fs.readdir),
       readFile = promisify(fs.readFile);
 
-describe("CSHTML Razor Tests", () => {
+describe("CSHTML Razor Tests", () => { 
     beforeEach(() => {
         hljsDefineCshtmlRazor(hljs);
     });
