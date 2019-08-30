@@ -175,18 +175,18 @@ function hljsDefineCshtmlRazor(hljs) {
     };
     var xml_blocks = getXmlBlocks(hljs, [razor_inline_expresion, razor_parentheses_block]);
     var razor_directives = {
-        begin: "^\\s*@(model|using|inherits|inject)[^\\r\\n{\\(]*$",
+        begin: "^\\s*@(page|model|using|inherits|inject)[^\\r\\n{\\(]*$",
         end: "$",        
         returnBegin: true,
         returnEnd: true,
         contains: [
             {
-                begin: "^\\s*@(model|using|inherits|inject)",
+                begin: "^\\s*@(page|model|using|inherits|inject)",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
             {
                 variants: [
-                    { begin: "\\s+", end: "$", },
+                    { begin: "\\s+", end: "$" },
                     { begin: "$" }
                 ],
                 className: "type",
