@@ -176,7 +176,7 @@ function hljsDefineCshtmlRazor(hljs) {
     var xml_blocks = getXmlBlocks(hljs, [razor_inline_expresion, razor_parentheses_block]);
     var razor_directives = {
         begin: "^\\s*@(page|model|using|inherits|inject)[^\\r\\n{\\(]*$",
-        end: "$",        
+        end: "$",
         returnBegin: true,
         returnEnd: true,
         contains: [
@@ -186,7 +186,8 @@ function hljsDefineCshtmlRazor(hljs) {
             },
             {
                 variants: [
-                    { begin: "\\s+", end: "$" },
+                    { begin: "\\r|\\n", endsParent: true},
+                    { begin: "\\s[^\\r\\n]+", end: "$" },
                     { begin: "$" }
                 ],
                 className: "type",
