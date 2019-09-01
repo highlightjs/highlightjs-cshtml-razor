@@ -1,7 +1,7 @@
 var should = require('should');
 var promisify = require("util").promisify;
 let path = require('path');
-let hljs = require("highlightjs");
+let hljs = require("highlight.js");
 const fs = require("fs");
 let hljsDefineCshtmlRazor = require("../cshtml-razor");
 

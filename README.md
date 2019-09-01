@@ -2,7 +2,7 @@
 
 For more about highlight.js, see https://highlightjs.org/
 
-CSHTML is a markup language created by Microsoft for ASP.NET MVC and ASP.NET Core applications. It allows to create markup containing both C# and HTML code. 
+CSHTML is a markup language created by Microsoft for ASP.NET MVC and ASP.NET Core applications. It allows to create markup containing both C# and HTML code.
 
 For more about the CSHTML Razor syntax here: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor.
 
@@ -13,9 +13,9 @@ Simply include the `highlight.js` script package in your webpage or node app, lo
 If you're not using a build system and just want to embed this in your webpage:
 
 ```html
-<script type="text/javascript" src="/path/to/highlightjs/highlight.pack.js"></script>
-<script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/cshtml-razor.js"></script>
-<script type="text/javascript">
+<script src="/path/to/highlight.js/highlight.pack.js"></script>
+<script src="/path/to/highlightjs-cshtml-razor/cshtml-razor.js"></script>
+<script>
     hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
     hljs.initHighlightingOnLoad();
 </script>
@@ -24,7 +24,7 @@ If you're not using a build system and just want to embed this in your webpage:
 If you're using webpack / rollup / browserify / node:
    
 ```javascript
-var hljs = require('highlightjs');
+var hljs = require('highlight.js');
 var hljsDefineCshtmlRazor = require('highlightjs-cshtml-razor');
 
 hljsDefineCshtmlRazor(hljs);
