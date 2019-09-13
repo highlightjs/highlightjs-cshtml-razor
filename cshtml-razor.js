@@ -101,6 +101,13 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "}",
         contains: [hljs.QUOTE_STRING_MODE, 'self']
     };
+    var razor_comment = hljs.COMMENT(
+        '@\\*',
+        '\\*@',
+        {
+            relevance: 10
+        }
+    );    
     var razor_inline_expresion = {
         begin: "@[a-zA-Z]+",
         returnBegin: true,
@@ -340,6 +347,7 @@ function hljsDefineCshtmlRazor(hljs) {
             razor_try_block,
             razor_escape_at,
             razor_text_block,
+            razor_comment,
             razor_parentheses_block,
             {
                 className: 'meta',
