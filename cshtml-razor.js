@@ -17,11 +17,10 @@ function getXmlBlocks(hljs, additional_blocks) {
     var string = {
         className: 'string',
         variants: [
-            { begin: /"/, end: /"/ },
-            { begin: /'/, end: /'/ },
+            { begin: /"/, end: /"/, contains: additional_blocks },
+            { begin: /'/, end: /'/, contains: additional_blocks },
             { begin: /[^\s"'=<>`]+/ }
-        ],
-        contains: additional_blocks
+        ]
     };
     var xml_tag_internal = {
         endsWithParent: true,
@@ -109,25 +108,15 @@ function hljsDefineCshtmlRazor(hljs) {
         }
     );    
     var razor_inline_expresion = {
-        begin: "@[a-zA-Z]+",
+        begin: '@[A-Za-z0-9\\._:-]+',
         returnBegin: true,
         subLanguage: 'cs',
-        end: "(\\r|\\n|<|\\s|\"|')",
         contains: [
             {
                 begin: '@',
                 className: SPECIAL_SYMBOL_CLASSNAME
-            },
-            { 
-                begin: '".*(?!$)"',
-                skip: true
-            },
-            {
-                begin: '"',
-                endsParent: true
             }
-        ],
-        returnEnd: true
+        ]
     };
     var razor_text_block = {
         begin: "[@]{0,1}<text>",
