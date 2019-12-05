@@ -107,7 +107,7 @@ function hljsDefineCshtmlRazor(hljs) {
         {
             relevance: 10
         }
-    );    
+    );
     var razor_inline_expresion = {
         begin: "@[a-zA-Z]+",
         returnBegin: true,
@@ -118,7 +118,7 @@ function hljsDefineCshtmlRazor(hljs) {
                 begin: '@',
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
-            { 
+            {
                 begin: '".*(?!$)"',
                 skip: true
             },
@@ -143,7 +143,7 @@ function hljsDefineCshtmlRazor(hljs) {
             {
                 begin: "</text>",
                 className: SPECIAL_SYMBOL_CLASSNAME,
-                endsParent: true,
+                endsParent: true
             }
         ]
     };
@@ -217,6 +217,18 @@ function hljsDefineCshtmlRazor(hljs) {
             closed_brace
         ]
     };
+    var razor_helper_block = {
+        begin: "^\\s*@helper[\\s]*[^{]+[\\s]*{",
+        returnBegin: true,
+        returnEnd: true,
+        end: "}",
+        subLanguage: "cshtml-razor",
+        contains: [
+            { begin: "@helper", className: SPECIAL_SYMBOL_CLASSNAME },
+            { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME },
+            closed_brace
+        ]
+    };
     var razor_code_block_variants = [
         { begin: "@for[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@if[\\s]*\\([^{]+[\\s]*{", end: "}" },
@@ -224,7 +236,7 @@ function hljsDefineCshtmlRazor(hljs) {
         { begin: "@while[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@using[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@lock[\\s]*\\([^{]+[\\s]*{", end: "}" },
-        { begin: "@foreach[\\s]*\\([^{]+[\\s]*{", end: "}" },
+        { begin: "@foreach[\\s]*\\([^{]+[\\s]*{", end: "}" }
     ];
     var razor_code_block = {
         variants: razor_code_block_variants,
@@ -256,8 +268,8 @@ function hljsDefineCshtmlRazor(hljs) {
                     { begin: "}", className: SPECIAL_SYMBOL_CLASSNAME },
                     {
                         variants: [
-                            { begin: "[\\s]*else\\sif[\\s]*\\([^{]+[\\s]*{", },
-                            { begin: "[\\s]*else[\\s]*", }
+                            { begin: "[\\s]*else\\sif[\\s]*\\([^{]+[\\s]*{" },
+                            { begin: "[\\s]*else[\\s]*" }
                         ],
                         subLanguage: "cs"
                     },
@@ -268,8 +280,7 @@ function hljsDefineCshtmlRazor(hljs) {
                 ]
             },
             braces,
-            closed_brace,
-            //razor_block
+            closed_brace
         ]
     };
     var section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
@@ -338,9 +349,10 @@ function hljsDefineCshtmlRazor(hljs) {
     };
 
     var result = {
-        aliases: ['cshtml','razor','razor-cshtml'],
+        aliases: ['cshtml', 'razor', 'razor-cshtml'],
         contains: [
             razor_directives,
+            razor_helper_block,
             razor_block,
             razor_code_block,
             razor_section_block,
@@ -365,8 +377,8 @@ function hljsDefineCshtmlRazor(hljs) {
     result.contains = result.contains.concat(xml_blocks);
 
     [razor_block, razor_code_block, razor_try_block]
-        .forEach(function(mode) {
-            var razorModes = result.contains.filter(function(c) { return c !== mode; });
+        .forEach(function (mode) {
+            var razorModes = result.contains.filter(function (c) { return c !== mode; });
             var replacerIndex = mode.contains.indexOf(CONTENT_REPLACER);
             mode.contains.splice.apply(mode.contains, [replacerIndex, 1].concat(razorModes));
         });
