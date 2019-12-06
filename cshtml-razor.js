@@ -101,6 +101,12 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "}",
         contains: [hljs.QUOTE_STRING_MODE, 'self']
     };
+    var csbraces = {
+        begin: "{",
+        end: "}",
+        contains: ['self'],
+        skip: true
+    };
     var razor_comment = hljs.COMMENT(
         '@\\*',
         '\\*@',
@@ -202,11 +208,14 @@ function hljsDefineCshtmlRazor(hljs) {
             }
         ]
     };
+    var cs_code_block_variants = [
+        { begin: "@\\{", end: "}" },
+        { begin: "@code\\s*\\{", end: "}" }
+    ];
     var razor_block = {
-        begin: "@\\{",
+        variants: cs_code_block_variants,
         returnBegin: true,
-        returnEnd: true,
-        end: "\\}",
+        returnEnd: true,        
         subLanguage: 'cs',
         contains: [
             {
@@ -214,6 +223,7 @@ function hljsDefineCshtmlRazor(hljs) {
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
             CONTENT_REPLACER,
+            csbraces,
             closed_brace
         ]
     };
