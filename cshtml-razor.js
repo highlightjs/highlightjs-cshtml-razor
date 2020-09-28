@@ -17,11 +17,10 @@ function getXmlBlocks(hljs, additional_blocks) {
     var string = {
         className: 'string',
         variants: [
-            { begin: /"/, end: /"/ },
-            { begin: /'/, end: /'/ },
+            { begin: /"/, end: /"/, contains: additional_blocks },
+            { begin: /'/, end: /'/, contains: additional_blocks },
             { begin: /[^\s"'=<>`]+/ }
-        ],
-        contains: additional_blocks
+        ]
     };
     var xml_tag_internal = {
         endsWithParent: true,
@@ -101,6 +100,12 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "}",
         contains: [hljs.QUOTE_STRING_MODE, 'self']
     };
+    var csbraces = {
+        begin: "{",
+        end: "}",
+        contains: ['self'],
+        skip: true
+    };
     var razor_comment = hljs.COMMENT(
         '@\\*',
         '\\*@',
@@ -109,10 +114,10 @@ function hljsDefineCshtmlRazor(hljs) {
         }
     );
     var razor_inline_expresion = {
-        begin: "@[a-zA-Z]+",
+        begin: '@[A-Za-z0-9\\._:-]+',
         returnBegin: true,
-        subLanguage: 'csharp',
         end: "(\\r|\\n|<|\\s|\"|')",
+        subLanguage: 'cs',
         contains: [
             {
                 begin: '@',
@@ -160,7 +165,7 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "\\)",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: "csharp",
+        subLanguage: 'cs',
         contains: [
             {
                 begin: "@\\(",
@@ -169,7 +174,7 @@ function hljsDefineCshtmlRazor(hljs) {
             {
                 begin: "\\(",
                 end: "\\)",
-                subLanguage: 'csharp',
+                subLanguage: 'cs',
                 contains: [hljs.QUOTE_STRING_MODE, 'self', razor_text_block]
             },
             razor_text_block,
@@ -193,7 +198,7 @@ function hljsDefineCshtmlRazor(hljs) {
             },
             {
                 variants: [
-                    { begin: "\\r|\\n", endsParent: true},
+                    { begin: "\\r|\\n", endsParent: true },
                     { begin: "\\s[^\\r\\n]+", end: "$" },
                     { begin: "$" }
                 ],
@@ -202,18 +207,22 @@ function hljsDefineCshtmlRazor(hljs) {
             }
         ]
     };
+    var cs_code_block_variants = [
+        { begin: "@\\{", end: "}" },
+        { begin: "@code\\s*\\{", end: "}" }
+    ];
     var razor_block = {
-        begin: "@\\{",
+        variants: cs_code_block_variants,
         returnBegin: true,
         returnEnd: true,
-        end: "\\}",
-        subLanguage: 'csharp',
+        subLanguage: 'cs',
         contains: [
             {
-                begin: "@\\{",
+                begin: "@(code\\s*)?\\{",
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
             CONTENT_REPLACER,
+            csbraces,
             closed_brace
         ]
     };
@@ -242,8 +251,7 @@ function hljsDefineCshtmlRazor(hljs) {
         variants: razor_code_block_variants,
         returnBegin: true,
         returnEnd: true,
-        end: "}",
-        subLanguage: 'csharp',
+        subLanguage: 'cs',
         contains: [
             {
                 variants: razor_code_block_variants.map(function (v) { return { begin: v.begin }; }),
@@ -252,7 +260,7 @@ function hljsDefineCshtmlRazor(hljs) {
                     { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
                     {
                         variants: razor_code_block_variants.map(function (v) { return { begin: v.begin.substr(1, v.begin.length - 2) }; }),
-                        subLanguage: "csharp"
+                        subLanguage: 'cs'
                     },
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
@@ -271,7 +279,7 @@ function hljsDefineCshtmlRazor(hljs) {
                             { begin: "[\\s]*else\\sif[\\s]*\\([^{]+[\\s]*{" },
                             { begin: "[\\s]*else[\\s]*" }
                         ],
-                        subLanguage: "csharp"
+                        subLanguage: 'cs'
                     },
                     {
                         begin: "{",
@@ -283,16 +291,15 @@ function hljsDefineCshtmlRazor(hljs) {
             closed_brace
         ]
     };
-    var section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
     var razor_try_block = {
         begin: "@try[\\s]*{",
         end: "}",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: "csharp",
+        subLanguage: 'cs',
         contains: [
             { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
-            { begin: "try[\\s]*{", subLanguage: "csharp" },
+            { begin: "try[\\s]*{", subLanguage: 'cs' },
             {
                 variants: [
                     { begin: "}[\\s]*catch[\\s]*\\([^\\)]+\\)[\\s]*{" },
@@ -306,7 +313,7 @@ function hljsDefineCshtmlRazor(hljs) {
                             { begin: "[\\s]*catch[\\s]*\\([^\\)]+\\)[\\s]*", },
                             { begin: "[\\s]*finally[\\s]*", },
                         ],
-                        subLanguage: "csharp"
+                        subLanguage: 'cs'
                     },
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
@@ -316,6 +323,7 @@ function hljsDefineCshtmlRazor(hljs) {
             closed_brace
         ]
     };
+    var section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
     var razor_section_block = {
         begin: section_begin,
         returnBegin: true,
@@ -334,7 +342,7 @@ function hljsDefineCshtmlRazor(hljs) {
     var rasor_await = {
         begin: "@await ",
         returnBegin: true,
-        subLanguage: 'csharp',
+        subLanguage: 'cs',
         end: "(\\r|\\n|<|\\s)",
         contains: [
             {
