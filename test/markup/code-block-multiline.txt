@@ -8,3 +8,10 @@ after
     var inCSharp = true;
     <text>xml</text>
 }
+
+
+code:
+@code {
+    var inCSharp = true;
+    <text>xml</text>
+}
