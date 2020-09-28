@@ -1,17 +1,17 @@
 before
-<span class="cs"></span><span class="hljs-built_in">@{</span><span class="cs">
+<span class="hljs-built_in">@{</span><span class="csharp">
     <span class="hljs-keyword">var</span> inCSharp = <span class="hljs-literal">true</span>;
-    </span><span class="cshtml-razor"></span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="cs">
+    </span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="csharp">
 </span><span class="hljs-built_in">}</span>
 after
-<span class="cs"></span><span class="hljs-built_in">@{</span><span class="cs">
+<span class="hljs-built_in">@{</span><span class="csharp">
     <span class="hljs-keyword">var</span> inCSharp = <span class="hljs-literal">true</span>;
-    </span><span class="cshtml-razor"></span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="cs">
+    </span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="csharp">
 </span><span class="hljs-built_in">}</span>
 
 
 code:
-<span class="cs"></span><span class="hljs-built_in">@code {</span><span class="cs">
+<span class="hljs-built_in">@code {</span><span class="csharp">
     <span class="hljs-keyword">var</span> inCSharp = <span class="hljs-literal">true</span>;
-    </span><span class="cshtml-razor"></span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="cs">
+    </span><span class="hljs-built_in">&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="csharp">
 </span><span class="hljs-built_in">}</span>

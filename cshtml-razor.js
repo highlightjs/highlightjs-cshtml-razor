@@ -117,7 +117,7 @@ function hljsDefineCshtmlRazor(hljs) {
         begin: '@[A-Za-z0-9\\._:-]+',
         returnBegin: true,
         end: "(\\r|\\n|<|\\s|\"|')",
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         contains: [
             {
                 begin: '@',
@@ -165,7 +165,7 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "\\)",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         contains: [
             {
                 begin: "@\\(",
@@ -174,7 +174,7 @@ function hljsDefineCshtmlRazor(hljs) {
             {
                 begin: "\\(",
                 end: "\\)",
-                subLanguage: 'cs',
+                subLanguage: 'csharp',
                 contains: [hljs.QUOTE_STRING_MODE, 'self', razor_text_block]
             },
             razor_text_block,
@@ -215,7 +215,7 @@ function hljsDefineCshtmlRazor(hljs) {
         variants: cs_code_block_variants,
         returnBegin: true,
         returnEnd: true,
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         contains: [
             {
                 begin: "@(code\\s*)?\\{",
@@ -251,7 +251,7 @@ function hljsDefineCshtmlRazor(hljs) {
         variants: razor_code_block_variants,
         returnBegin: true,
         returnEnd: true,
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         contains: [
             {
                 variants: razor_code_block_variants.map(function (v) { return { begin: v.begin }; }),
@@ -260,7 +260,7 @@ function hljsDefineCshtmlRazor(hljs) {
                     { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
                     {
                         variants: razor_code_block_variants.map(function (v) { return { begin: v.begin.substr(1, v.begin.length - 2) }; }),
-                        subLanguage: 'cs'
+                        subLanguage: 'csharp'
                     },
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
@@ -279,7 +279,7 @@ function hljsDefineCshtmlRazor(hljs) {
                             { begin: "[\\s]*else\\sif[\\s]*\\([^{]+[\\s]*{" },
                             { begin: "[\\s]*else[\\s]*" }
                         ],
-                        subLanguage: 'cs'
+                        subLanguage: 'csharp'
                     },
                     {
                         begin: "{",
@@ -296,10 +296,10 @@ function hljsDefineCshtmlRazor(hljs) {
         end: "}",
         returnBegin: true,
         returnEnd: true,
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         contains: [
             { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
-            { begin: "try[\\s]*{", subLanguage: 'cs' },
+            { begin: "try[\\s]*{", subLanguage: 'csharp' },
             {
                 variants: [
                     { begin: "}[\\s]*catch[\\s]*\\([^\\)]+\\)[\\s]*{" },
@@ -313,7 +313,7 @@ function hljsDefineCshtmlRazor(hljs) {
                             { begin: "[\\s]*catch[\\s]*\\([^\\)]+\\)[\\s]*", },
                             { begin: "[\\s]*finally[\\s]*", },
                         ],
-                        subLanguage: 'cs'
+                        subLanguage: 'csharp'
                     },
                     { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
                 ]
@@ -342,7 +342,7 @@ function hljsDefineCshtmlRazor(hljs) {
     var rasor_await = {
         begin: "@await ",
         returnBegin: true,
-        subLanguage: 'cs',
+        subLanguage: 'csharp',
         end: "(\\r|\\n|<|\\s)",
         contains: [
             {
