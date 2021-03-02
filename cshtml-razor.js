@@ -124,12 +124,15 @@ function hljsDefineCshtmlRazor(hljs) {
                 className: SPECIAL_SYMBOL_CLASSNAME
             },
             {
-                begin: '".*(?!$)"',
+                begin: '\\[',
+                end: '\\]',
                 skip: true
-            },
+            }
+            ,
             {
-                begin: '"',
-                endsParent: true
+                begin: '\\(',
+                end: '\\)',
+                skip: true
             }
         ],
         returnEnd: true

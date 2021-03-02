@@ -1,6 +1,10 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2021-03-02
+### Fixed
+- Fix inline razor blocks inside tag attributes (inside double quotes)
+
 ## [2.0.0] - 2020-09-28
 ### Added
 - Support the @code directives

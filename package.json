@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-cshtml-razor",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
   "main": "cshtml-razor.js",
   "scripts": {

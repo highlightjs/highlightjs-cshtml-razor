@@ -6,3 +6,6 @@ Hello @owner
 from html
 sample@email.com
 @@escapedat
+
+<DxDataGrid T="@WebApiOrder" CustomData="@LoadOrderData("foo")" ShowFilterRow="true" SuperDuper="@Foo["bar"]">
+</DxDataGrid>
