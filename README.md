@@ -6,28 +6,39 @@ CSHTML is a markup language created by Microsoft for ASP.NET MVC and ASP.NET Cor
 
 For more about the CSHTML Razor syntax here: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor.
 
-### Usage
+## Usage
 
-Simply include the `highlight.js` script package in your webpage or node app, load up this module and apply it to `hljs`.
+Simply include the `Highlight.js` library in your webpage or Node app, then load this module.
 
-If you're not using a build system and just want to embed this in your webpage:
+### Static website or simple usage
+Simply load the module after loading Highlight.js. You'll use the minified version found in the dist directory. This module is just a CDN build of the language, so it will register itself as the Javascript is loaded.
 
 ```html
-<script src="/path/to/highlight.js/highlight.pack.js"></script>
-<script src="/path/to/highlightjs-cshtml-razor/cshtml-razor.js"></script>
+<script type="text/javascript" src="/path/to/highlight.min.js"></script>
+<script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/dist/cshtml-razor.min.js"></script>
 <script>
     hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
     hljs.initHighlightingOnLoad();
 </script>
 ```
 
-If you're using webpack / rollup / browserify / node:
+### Using directly from the UNPKG CDN
+
+Add the following script tag in your page:
+
+```html
+<script type="text/javascript" src="https://unpkg.com/highlightjs-cshtml-razor/dist/cshtml-razor.min.js"></script>
+```
+
+### With Node or another build system
+
+If you're using Node / Webpack / Rollup / Browserify, etc, simply require the language module, then register it with Highlight.js.
    
 ```javascript
-var hljs = require('highlight.js');
-var hljsDefineCshtmlRazor = require('highlightjs-cshtml-razor');
+var hljs = require('highlightjs');
+var hljsRazor = require('highlightjs-cshtml-razor');
 
-hljsDefineCshtmlRazor(hljs);
+hljs.registerLanguage("highlightjs-cshtml-razor", hljsRazor);
 hljs.initHighlightingOnLoad();
 ```
 

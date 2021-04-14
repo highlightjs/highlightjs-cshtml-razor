@@ -3,7 +3,7 @@ var promisify = require("util").promisify;
 let path = require('path');
 let hljs = require("highlight.js");
 const fs = require("fs");
-let hljsDefineCshtmlRazor = require("../cshtml-razor");
+let hljsDefineCshtmlRazor = require("../src/cshtml-razor");
 
 const readdir = promisify(fs.readdir),
       readFile = promisify(fs.readFile);

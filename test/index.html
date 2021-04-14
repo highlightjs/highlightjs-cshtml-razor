@@ -9,8 +9,8 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../node_modules/highlightjs/styles/default.css">
-        <script type="text/javascript" src="../node_modules/highlightjs/highlight.pack.js"></script>
+        <link rel="stylesheet" href="../node_modules/highlight.js/styles/default.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script type="text/javascript" src="../cshtml-razor.js"></script>
         <script type="text/javascript">
             hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
@@ -19,18 +19,21 @@
     </head>
     <body>
         <pre><code class="hljs cshtml">
-            before
-            @{
-                var inCSharp = true;
-                @&lt;text&gt;xml&lt;/text&gt;
-                &lt;div class="foo"&gt;content&lt;/div&gt;
-            }
-            after
-            @{
-                var inCSharp = true;
-                &lt;text&gt;xml&lt;/text&gt;
-            }
-            &lt;div class="foo"&gt;content&lt;/div&gt;
+            @using System.Threading
+            @using System.Threading.Tasks
+            @using System.Net.Http
+            @using System.Text.Json
+            &lt;DxDataGrid T="@WebApiOrder" CustomData="@LoadOrderData("foo")" ShowFilterRow="true"&gt;
+                &lt;Columns&gt;
+                    &lt;DxDataGridComboBoxColumn T="@(WebApiCustomerLookup)" TextFieldName="Text" ValueFieldName="Value"
+                                            CustomData="@LoadCustomerData" Field="@nameof(WebApiOrder.CustomerID)" Width="300px" /&gt;
+                    &lt;DxDataGridDateEditColumn Field="@nameof(WebApiOrder.OrderDate)" Width="180px" /&gt;
+                    &lt;DxDataGridSpinEditColumn Field="@nameof(WebApiOrder.Freight)" DisplayFormat="c" Width="180px" /&gt;
+                    &lt;DxDataGridColumn Field="@nameof(WebApiOrder.ShipCountry)" Width="210px" /&gt;
+                    &lt;DxDataGridComboBoxColumn T="@(WebApiShipperLookup)" TextFieldName="Text" ValueFieldName="Value"
+                                            CustomData="@LoadShipmentData" Field="@nameof(WebApiOrder.ShipVia)" Width="220px" /&gt;
+                &lt;/Columns&gt;
+            &lt;/DxDataGrid&gt;
         </code></pre>
         <pre><code class="hljs cshtml">
             @if(true) {

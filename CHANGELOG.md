@@ -1,6 +1,9 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2021-04-14
+- Add the dist directory, and a minified version of the script
+
 ## [2.0.1] - 2021-03-02
 ### Fixed
 - Fix inline razor blocks inside tag attributes (inside double quotes)
