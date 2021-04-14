@@ -2,7 +2,7 @@
   "name": "highlightjs-cshtml-razor",
   "version": "2.1.0",
   "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
-  "main": "src/cshtml-razor.js",
+  "main": "src/languages/cshtml-razor.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },

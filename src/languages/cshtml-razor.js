@@ -1,6 +1,6 @@
 /*
  * Language: cshtml-razor
- * Requires: xml.js, cs.js, css.js, javascript.js
+ * Requires: xml.js, csharp.js, css.js, javascript.js
  * Author: Roman Resh <romanresh@live.com>
 */
 
