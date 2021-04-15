@@ -10,14 +10,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../node_modules/highlight.js/styles/default.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script type="text/javascript" src="../cshtml-razor.js"></script>
+        <script src="../../../build/highlight.js"></script>
+        <script type="text/javascript" src="../src/languages/cshtml-razor.js"></script>
         <script type="text/javascript">
             hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
             hljs.initHighlightingOnLoad();
         </script>
     </head>
     <body>
+        <b>Works only inside highlight.js/extra/cshtml-razor directory. See <a href="https://github.com/highlightjs/highlight.js/blob/main/extra/3RD_PARTY_QUICK_START.md">Language Contribution Guide</a></b>
         <pre><code class="hljs cshtml">
             @using System.Threading
             @using System.Threading.Tasks

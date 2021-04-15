@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme",
   "devDependencies": {
-    "highlight.js": "^10.0.0",
+    "highlight.js": "^10.7.2",
     "mocha": "^5.2.0",
     "should": "^13.2.3"
   },
