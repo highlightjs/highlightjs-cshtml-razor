@@ -10,12 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/highlightjs/highlightjs-cshtml-razor.git"
   },
-  "files": [
-    "cshtml-razor.js"
-  ],
   "keywords": [
     "cshtml",
     "cshtml-razor",
+    "cshtml-blazor",
     "razor-cshtml",
     "razor",
     "hljs",
@@ -24,7 +22,8 @@
     "razor",
     "asp.net",
     "c#",
-    "csharp"
+    "csharp",
+    "blazor"
   ],
   "author": "RomanResh",
   "license": "CC0-1.0",

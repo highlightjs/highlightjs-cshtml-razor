@@ -1,8 +1,9 @@
-`highlight.js` syntax definition for Razor CSHTML.
+# CSHTML Razor - a language grammar for [highlight.js](https://highlightjs.org/)
 
-For more about highlight.js, see https://highlightjs.org/
+![version](https://badgen.net/npm/v/highlightjs-cshtml-razor) ![license](https://badgen.net/badge/license/CC0%201.0/blue)
+![install size](https://badgen.net/packagephobia/install/highlightjs-cshtml-razor) ![minified size](https://badgen.net/bundlephobia/min/highlightjs-cshtml-razor)
 
-CSHTML is a markup language created by Microsoft for ASP.NET MVC and ASP.NET Core applications. It allows to create markup containing both C# and HTML code.
+CSHTML is a markup language created by Microsoft for ASP.NET MVC, ASP.NET Core and Blazor applications. It allows to create markup containing both C# and HTML code.
 
 For more about the CSHTML Razor syntax here: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor.
 
