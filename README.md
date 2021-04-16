@@ -18,8 +18,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 <script type="text/javascript" src="/path/to/highlight.min.js"></script>
 <script type="text/javascript" src="/path/to/highlightjs-cshtml-razor/dist/cshtml-razor.min.js"></script>
 <script>
-    hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
-    hljs.initHighlightingOnLoad();
+    hljs.highlightAll();
 </script>
 ```
 
