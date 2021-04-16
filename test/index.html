@@ -11,9 +11,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../node_modules/highlight.js/styles/default.css">
         <script src="../../../build/highlight.js"></script>
-        <script type="text/javascript" src="../src/languages/cshtml-razor.js"></script>
+        <script src="../../../build/languages/csharp.min.js"></script>
+        <script src="../../../build/languages/xml.min.js"></script>
+        <script src="../../../build/languages/css.min.js"></script>
+        <script type="text/javascript" src="../dist/cshtml-razor.min.js"></script>
         <script type="text/javascript">
-            hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
             hljs.initHighlightingOnLoad();
         </script>
     </head>
@@ -44,6 +46,10 @@
                 @while(true) {
                     &lt;div class="bar"&gt;content&lt;/div&gt;
                 }
+            }
+            @code {
+                var a = 123;
+                var b = false;
             }
         </code></pre>
         <pre><code class="hljs cshtml">
