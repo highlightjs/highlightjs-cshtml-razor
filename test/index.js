@@ -10,7 +10,7 @@ const readdir = promisify(fs.readdir),
 
 describe("CSHTML Razor Tests", () => { 
     beforeEach(() => {
-        hljsDefineCshtmlRazor(hljs);
+        hljs.registerLanguage('cshtml-razor', hljsDefineCshtmlRazor);
     });
     it("should generate correct markup", async () => {
         var files = await readdir(path.join(__dirname, "markup", "cshtml-razor"));
