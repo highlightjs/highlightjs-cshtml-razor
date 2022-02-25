@@ -38,8 +38,8 @@ If you're using Node / Webpack / Rollup / Browserify, etc, simply require the la
 var hljs = require('highlightjs');
 var hljsRazor = require('highlightjs-cshtml-razor');
 
-hljs.registerLanguage("highlightjs-cshtml-razor", hljsRazor);
-hljs.initHighlightingOnLoad();
+hljs.registerLanguage("cshtml-razor", hljsRazor);
+hljs.highlightAll();
 ```
 
 ### License
