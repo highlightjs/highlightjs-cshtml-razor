@@ -1,6 +1,10 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.2] - 2025-06-25
+- Fix incorrect processing '>' symbols inside strings in code blocks
+- Split tests to simplify its running
+
 ## [2.1.0] - 2021-04-14
 - Add the dist directory, and a minified version of the script
 

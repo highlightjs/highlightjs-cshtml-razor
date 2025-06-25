@@ -1,0 +1,3 @@
+<span class="hljs-built_in">@code {</span><span class="csharp">
+    CriteriaOperator FilterCriteria { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; } = CriteriaOperator.Parse(<span class="hljs-string">&quot;StartsWith([ProductName], &#x27;C&#x27;) And ([UnitPrice] &lt; 50 Or [Discontinued] = true)&quot;</span>);
+</span><span class="hljs-built_in">}</span>

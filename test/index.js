@@ -12,18 +12,43 @@ describe("CSHTML Razor Tests", () => {
     beforeEach(() => {
         hljs.registerLanguage('cshtml-razor', hljsDefineCshtmlRazor);
     });
-    it("should generate correct markup", async () => {
-        var files = await readdir(path.join(__dirname, "markup", "cshtml-razor"));
-        files = files.filter(f => !f.includes(".expect."));
-        for(var f of files) {
-            let fn = path.join(__dirname, "markup", "cshtml-razor", f);
-            let expectFn = fn.replace(".txt", ".expect.txt");
-            var code = await readFile(fn, "utf-8");
-            var exp = await readFile(expectFn, "utf-8");
-            var actual = hljs.highlight("cshtml-razor", code).value;
-            actual.trim().should.eql(exp.trim(), f);
-        }
+    async function testMarkupGeneration(fileName) {
+        const codeFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.txt`);
+        const expectedFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.expect.txt`);
+
+        const code = (await readFile(codeFn, "utf-8")).trim();
+        const expectedMarkup = (await readFile(expectedFn, "utf-8")).trim();
+
+        const actualMarkup = hljs.highlight("cshtml-razor", code).value.trim();
+        actualMarkup.should.eql(expectedMarkup, `
+Markup for ${fileName} does not match expected output.
+
+📄 Source code:
+${code}
+
+📄 Expected generated markup:
+${expectedMarkup}
+            
+📄 Actual generated markup:
+${actualMarkup}
+        `);
+    }
+    it("should generate correct markup - code-block-multiline", async () => {
+        await testMarkupGeneration("code-block-multiline");
     });
+    it("should generate correct markup - if-else-block", async () => {
+        await testMarkupGeneration("if-else-block");
+    });
+    it("should generate correct markup - inline", async () => {
+        await testMarkupGeneration("inline");
+    });
+    it("should generate correct markup - razor-in-razor", async () => {
+        await testMarkupGeneration("razor-in-razor");
+    });
+    it("should generate correct markup - triangle-bracket-in-cs", async () => {
+        await testMarkupGeneration("triangle-bracket-in-cs");
+    });
+
     it("should be detected correctly", async () => {
         var code = await readFile(path.join(__dirname, 'detect', "cshtml-razor", "default.txt"), "utf-8");
         var actual = hljs.highlightAuto(code).language;

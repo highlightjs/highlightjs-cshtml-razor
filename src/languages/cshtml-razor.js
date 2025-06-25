@@ -5,32 +5,39 @@
 */
 
 module.exports = function (hljs) {
-    var SPECIAL_SYMBOL_CLASSNAME = "built_in";
-    var CONTENT_REPLACER = {};
-    var closed_brace = {
+    const SPECIAL_SYMBOL_CLASSNAME = "built_in";
+    const CONTENT_REPLACER = {};
+    const closed_brace = {
         begin: "}",
         className: SPECIAL_SYMBOL_CLASSNAME,
         endsParent: true
     };
-    var braces = {
+    const braces = {
         begin: "{",
         end: "}",
         contains: [hljs.QUOTE_STRING_MODE, 'self']
     };
-    var csbraces = {
+    const csbraces = { // allows to find exactly last closing brace in code blocks (to process codeblock content with "csharp" sub language)
         begin: "{",
         end: "}",
         contains: ['self'],
         skip: true
     };
-    var razor_comment = hljs.COMMENT(
+    const quotes = { // allows to skip razor symbols/tags inside CS strings
+        variants: [
+            { begin: /"/, end: /"/, skip: true },
+            { begin: /'/, end: /'/, skip: true }
+        ],
+        skip: true
+    };
+    const razor_comment = hljs.COMMENT(
         '@\\*',
         '\\*@',
         {
             relevance: 10
         }
     );
-    var razor_inline_expresion = {
+    const razor_inline_expresion = {
         begin: '@[A-Za-z0-9\\._:-]+',
         returnBegin: true,
         end: "(\\r|\\n|<|\\s|\"|')",
@@ -54,7 +61,7 @@ module.exports = function (hljs) {
         ],
         returnEnd: true
     };
-    var razor_text_block = {
+    const razor_text_block = {
         begin: "[@]{0,1}<text>",
         returnBegin: true,
         end: "</text>",
@@ -72,7 +79,7 @@ module.exports = function (hljs) {
             }
         ]
     };
-    var razor_escape_at = {
+    const razor_escape_at = {
         variants: [
             { begin: "@@" },
             { begin: "[a-zA-Z]+@" }
@@ -80,7 +87,7 @@ module.exports = function (hljs) {
         skip: true
     };
 
-    var razor_parentheses_block = {
+    const razor_parentheses_block = {
         begin: "@\\(",
         end: "\\)",
         returnBegin: true,
@@ -105,9 +112,9 @@ module.exports = function (hljs) {
             }
         ]
     };
-    var xml_blocks = getXmlBlocks(hljs, [razor_inline_expresion, razor_parentheses_block]);
-    var razor_directives_prefix = "^\\s*@(page|model|using|inherits|inject|layout)";
-    var razor_directives = {
+    const xml_blocks = getXmlBlocks(hljs, [razor_inline_expresion, razor_parentheses_block]);
+    const razor_directives_prefix = "^\\s*@(page|model|using|inherits|inject|layout)";
+    const razor_directives = {
         begin: razor_directives_prefix + "[^\\r\\n{\\(]*$",
         end: "$",
         returnBegin: true,
@@ -128,11 +135,11 @@ module.exports = function (hljs) {
             }
         ]
     };
-    var cs_code_block_variants = [
+    const cs_code_block_variants = [
         { begin: "@\\{", end: "}" },
         { begin: "@code\\s*\\{", end: "}" }
     ];
-    var razor_block = {
+    const razor_block = {
         variants: cs_code_block_variants,
         returnBegin: true,
         returnEnd: true,
@@ -144,10 +151,11 @@ module.exports = function (hljs) {
             },
             CONTENT_REPLACER,
             csbraces,
+            quotes,
             closed_brace
         ]
     };
-    var razor_helper_block = {
+    const razor_helper_block = {
         begin: "^\\s*@helper[\\s]*[^{]+[\\s]*{",
         returnBegin: true,
         returnEnd: true,
@@ -159,7 +167,7 @@ module.exports = function (hljs) {
             closed_brace
         ]
     };
-    var razor_code_block_variants = [
+    const razor_code_block_variants = [
         { begin: "@for[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@if[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@switch[\\s]*\\([^{]+[\\s]*{", end: "}" },
@@ -168,7 +176,7 @@ module.exports = function (hljs) {
         { begin: "@lock[\\s]*\\([^{]+[\\s]*{", end: "}" },
         { begin: "@foreach[\\s]*\\([^{]+[\\s]*{", end: "}" }
     ];
-    var razor_code_block = {
+    const razor_code_block = {
         variants: razor_code_block_variants,
         returnBegin: true,
         returnEnd: true,
@@ -212,7 +220,7 @@ module.exports = function (hljs) {
             closed_brace
         ]
     };
-    var razor_try_block = {
+    const razor_try_block = {
         begin: "@try[\\s]*{",
         end: "}",
         returnBegin: true,
@@ -244,8 +252,8 @@ module.exports = function (hljs) {
             closed_brace
         ]
     };
-    var section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
-    var razor_section_block = {
+    const section_begin = "@section[\\s]+[a-zA-Z0-9]+[\\s]*{";
+    const razor_section_block = {
         begin: section_begin,
         returnBegin: true,
         returnEnd: true,
@@ -260,7 +268,7 @@ module.exports = function (hljs) {
             closed_brace
         ]
     };
-    var rasor_await = {
+    const rasor_await = {
         begin: "@await ",
         returnBegin: true,
         subLanguage: 'csharp',
@@ -277,7 +285,7 @@ module.exports = function (hljs) {
         ]
     };
 
-    var contains = [
+    const contains = [
         razor_directives,
         razor_helper_block,
         razor_block,
@@ -302,8 +310,8 @@ module.exports = function (hljs) {
     ].concat(xml_blocks);
     [razor_block, razor_code_block, razor_try_block]
         .forEach(function (mode) {
-            var razorModes = contains.filter(function (c) { return c !== mode; });
-            var replacerIndex = mode.contains.indexOf(CONTENT_REPLACER);
+            const razorModes = contains.filter(function (c) { return c !== mode; });
+            const replacerIndex = mode.contains.indexOf(CONTENT_REPLACER);
             mode.contains.splice.apply(mode.contains, [replacerIndex, 1].concat(razorModes));
         });
 
@@ -314,14 +322,14 @@ module.exports = function (hljs) {
 };
 
 function getXmlBlocks(hljs, additional_blocks) {
-    var xml_comment = hljs.COMMENT(
+    const xml_comment = hljs.COMMENT(
         '<!--',
         '-->',
         {
             relevance: 10
         }
     );
-    var string = {
+    const string = {
         className: 'string',
         variants: [
             { begin: /"/, end: /"/, contains: additional_blocks },
@@ -329,7 +337,7 @@ function getXmlBlocks(hljs, additional_blocks) {
             { begin: /[^\s"'=<>`]+/ }
         ]
     };
-    var xml_tag_internal = {
+    const xml_tag_internal = {
         endsWithParent: true,
         illegal: /</,
         relevance: 0,

@@ -1,0 +1,3 @@
+@code {
+    CriteriaOperator FilterCriteria { get; set; } = CriteriaOperator.Parse("StartsWith([ProductName], 'C') And ([UnitPrice] < 50 Or [Discontinued] = true)");
+}
