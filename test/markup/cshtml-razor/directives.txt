@@ -1,0 +1,3 @@
+@inject ICarouselImageDataProvider CarouselImageDataProvider
+
+<h1>My Page</h1>

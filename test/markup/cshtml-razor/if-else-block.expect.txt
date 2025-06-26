@@ -1,7 +1,7 @@
 before
-<span class="hljs-built_in">@</span><span class="csharp"><span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>) </span><span class="hljs-built_in">{</span><span class="csharp">
+<span class="hljs-built_in">@</span><span class="language-csharp"><span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>) </span><span class="hljs-built_in">{</span><span class="language-csharp">
     block
-</span><span class="hljs-built_in">}</span><span class="csharp"> <span class="hljs-keyword">else</span> </span><span class="hljs-built_in">{</span><span class="csharp">
+</span><span class="hljs-built_in">}</span><span class="language-csharp"> <span class="hljs-keyword">else</span> </span><span class="hljs-built_in">{</span><span class="language-csharp">
     block
 </span><span class="hljs-built_in">}</span>
 after

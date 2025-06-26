@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /*
  * Language: cshtml-razor
  * Requires: xml.js, csharp.js, css.js, javascript.js
@@ -166,14 +167,13 @@ module.exports = function(hljs) {
       closedBrace
     ]
   };
-  const razorCodeBlockVariants = [
-    { begin: "@for\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@if\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@switch\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@while\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@using\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@lock\\s*\\([^{]+\\s*{", end: "}" },
-    { begin: "@foreach\\s*\\([^{]+\\s*{", end: "}" }
+  const razorCodeBlockVariants = ['for', 'if', 'switch', 'while', 'using', 'lock', 'foreach']
+    .map(keyword => ({
+      begin: `@${keyword}(?![\\w\\d])[^{]*\\{`,
+      end: "}"
+    }));
+  const elseVariants = [
+    { begin: "\\}\\s*else\\s*(if[^\\{]+|)\\{" }
   ];
   const razorCodeBlock = {
     variants: razorCodeBlockVariants,
@@ -187,7 +187,7 @@ module.exports = function(hljs) {
         contains: [
           { begin: "@", className: SPECIAL_SYMBOL_CLASSNAME },
           {
-            variants: razorCodeBlockVariants.map(function(v) { return { begin: v.begin.substr(1, v.begin.length - 2) }; }),
+            variants: razorCodeBlockVariants.map(function(v) { return { begin: `${v.begin}`.substring(1, v.begin.length - 2) }; }),
             subLanguage: 'csharp'
           },
           { begin: "{", className: SPECIAL_SYMBOL_CLASSNAME }
@@ -195,18 +195,12 @@ module.exports = function(hljs) {
       },
       CONTENT_REPLACER,
       {
-        variants: [
-          { begin: "}\\s*else\\sif\\s*\\([^{]+\\s*{" },
-          { begin: "}\\s*else\\s*{" }
-        ],
+        variants: elseVariants,
         returnBegin: true,
         contains: [
           { begin: "}", className: SPECIAL_SYMBOL_CLASSNAME },
           {
-            variants: [
-              { begin: "\\s*else\\sif\\s*\\([^{]+\\s*{" },
-              { begin: "\\s*else\\s*" }
-            ],
+            begin: elseVariants[0].begin.substring(2, elseVariants[0].begin.length - 2),
             subLanguage: 'csharp'
           },
           {

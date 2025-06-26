@@ -8,31 +8,32 @@ let hljsDefineCshtmlRazor = require("../src/languages/cshtml-razor");
 const readdir = promisify(fs.readdir),
       readFile = promisify(fs.readFile);
 
-describe("CSHTML Razor Tests", () => { 
-    beforeEach(() => {
-        hljs.registerLanguage('cshtml-razor', hljsDefineCshtmlRazor);
-    });
-    async function testMarkupGeneration(fileName) {
-        const codeFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.txt`);
-        const expectedFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.expect.txt`);
+async function testMarkupGeneration(fileName) {
+    const codeFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.txt`);
+    const expectedFn = path.join(__dirname, "markup", "cshtml-razor", `${fileName}.expect.txt`);
 
-        const code = (await readFile(codeFn, "utf-8")).trim();
-        const expectedMarkup = (await readFile(expectedFn, "utf-8")).trim();
+    const code = (await readFile(codeFn, "utf-8")).trim();
+    const expectedMarkup = (await readFile(expectedFn, "utf-8")).trim();
 
-        const actualMarkup = hljs.highlight("cshtml-razor", code).value.trim();
-        actualMarkup.should.eql(expectedMarkup, `
-Markup for ${fileName} does not match expected output.
+    const actualMarkup = hljs.highlight("cshtml-razor", code).value.trim();
+    actualMarkup.should.eql(expectedMarkup, `Markup for ${fileName} does not match expected output.
 
 📄 Source code:
 ${code}
 
-📄 Expected generated markup:
+✅ Expected generated markup:
 ${expectedMarkup}
             
-📄 Actual generated markup:
-${actualMarkup}
-        `);
-    }
+❌ Actual generated markup:
+${actualMarkup}`);
+}
+
+
+describe("CSHTML Razor Tests", () => { 
+    beforeEach(() => {
+        hljs.registerLanguage('cshtml-razor', hljsDefineCshtmlRazor);
+    });
+    
     it("should generate correct markup - code-block-multiline", async () => {
         await testMarkupGeneration("code-block-multiline");
     });
@@ -47,6 +48,9 @@ ${actualMarkup}
     });
     it("should generate correct markup - triangle-bracket-in-cs", async () => {
         await testMarkupGeneration("triangle-bracket-in-cs");
+    });
+    it("should generate correct markup - directives", async () => {
+        await testMarkupGeneration("directives");
     });
 
     it("should be detected correctly", async () => {

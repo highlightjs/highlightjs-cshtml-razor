@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-cshtml-razor",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "highlight.js syntax definition for ASP.NET Razor CSHTML language",
   "main": "src/languages/cshtml-razor.js",
   "scripts": {
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/highlightjs/highlightjs-cshtml-razor#readme",
   "devDependencies": {
-    "highlight.js": "^10.7.2",
+    "highlight.js": "^11.1.1",
     "mocha": "^5.2.0",
     "should": "^13.2.3"
   },

@@ -1,17 +1,17 @@
-<span class="hljs-built_in">@{</span><span class="csharp">
+<span class="hljs-built_in">@{</span><span class="language-csharp">
     <span class="hljs-keyword">var</span> inCSharp = <span class="hljs-literal">true</span>;
-    </span><span class="hljs-built_in">@&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="csharp">
-    </span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><span class="csharp">content</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="csharp">
+    </span><span class="hljs-built_in">@&lt;text&gt;</span><span class="language-cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="language-csharp">
+    </span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><span class="language-csharp">content</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="language-csharp">
 </span><span class="hljs-built_in">}</span>
 
-<span class="hljs-built_in">@</span><span class="csharp"><span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)</span><span class="hljs-built_in">{</span><span class="csharp">
+<span class="hljs-built_in">@</span><span class="language-csharp"><span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)</span><span class="hljs-built_in">{</span><span class="language-csharp">
     <span class="hljs-keyword">var</span> inCSharp = <span class="hljs-literal">true</span>;
-    </span><span class="hljs-built_in">@&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="csharp">
-    </span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><span class="csharp">content</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="csharp">
+    </span><span class="hljs-built_in">@&lt;text&gt;</span><span class="language-cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span><span class="language-csharp">
+    </span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><span class="language-csharp">content</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="language-csharp">
 </span><span class="hljs-built_in">}</span>
 
-<span class="hljs-built_in">@section Test{</span><span class="cshtml-razor">
+<span class="hljs-built_in">@section Test{</span><span class="language-cshtml-razor">
     var inCSharp = true;
-    <span class="hljs-built_in">@&lt;text&gt;</span><span class="cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span>
+    <span class="hljs-built_in">@&lt;text&gt;</span><span class="language-cshtml-razor">xml</span><span class="hljs-built_in">&lt;/text&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </span><span class="hljs-built_in">}</span>

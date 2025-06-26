@@ -1,6 +1,10 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2025-06-26
+- Fixed "Polynomial backtracking" vulnerability
+- Updated version of hljs
+
 ## [2.1.2] - 2025-06-25
 - Fix incorrect processing '>' symbols inside strings in code blocks
 - Split tests to simplify its running
